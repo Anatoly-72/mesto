@@ -1,0 +1,24 @@
+@font-face {
+  src: url('fonts/inter/Inter-Regular.woff');
+  font-family: 'Inter-Regular';
+}
+
+@font-face {
+  src: url('fonts/inter/Inter-Bold.woff');
+  font-family: 'Inter-Bold';
+}
+
+@font-face {
+  src: url('fonts/inter/Inter-Medium.woff');
+  font-family: 'Inter-Medium';
+}
+
+@font-face {
+  src: url('fonts/montserrat/Montserrat-Bold.woff');
+  font-family: 'Montserrat-Bold';
+}
+
+@font-face {
+  src: url('fonts/montserrat/Montserrat-Semibold.woff');
+  font-family: 'Montserrat-Semibold';
+}
