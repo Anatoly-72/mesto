@@ -196,5 +196,74 @@
   }
 }
 
+.cards {
+  max-width: 880px;
+}
+
+.cards_margin {
+  margin: 46px auto 0;
+}
+
+@media screen and (max-width: 767px) {
+  .cards_margin {
+    margin: 36px auto 0;
+  }
+}
+
+.cards__list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px 17px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 282px;
+}
+
+.card__img {
+  width: 100%;
+}
+
+.card__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 246px;
+  margin: 26px 15px 31px 21px;
+}
+
+.card__title {
+  display: inline-block;
+  font-family: 'Inter-Black';
+  font-size: 24px;
+  line-height: 29px;
+  color: #000;
+  margin: 0;
+  max-width: 197px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card__icon {
+  display: inline-block;
+  width: 22px;
+  height: 19px;
+  background-image: url(../images/heart.svg);
+  cursor: pointer;
+}
+
+.card__icon:hover {
+  opacity: 0.5;
+}
+
 
 
