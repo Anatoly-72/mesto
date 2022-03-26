@@ -26,7 +26,7 @@
   max-width: 1280px;
   height: 100%;
   margin: 0 auto;
-  padding: 45px 0 60px;
+  padding: 45px 200px 60px;
   background-color: #000;
 }
 
@@ -269,6 +269,35 @@
 
 .card__icon:hover {
   opacity: 0.5;
+}
+
+.footer {
+  max-width: 880px;
+}
+
+.footer_margin {
+  margin: 67px auto 0;
+}
+
+@media screen and (max-width: 767px) {
+  .footer_margin {
+    margin: 48px auto 0;
+  }
+}
+
+.footer__text {
+  font-family: 'Inter-Regular';
+  font-size: 18px;
+  line-height: 22px;
+  color: #545454;
+  margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .footer__text {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }
 
 
