@@ -201,7 +201,7 @@
 }
 
 .cards_margin {
-  margin: 46px auto 0;
+  margin: 50px auto 0;
 }
 
 @media screen and (max-width: 767px) {
@@ -237,7 +237,7 @@
   justify-content: space-between;
   align-items: center;
   max-width: 246px;
-  margin: 26px 15px 31px 21px;
+  margin: 23px 15px 27px 21px;
 }
 
 .card__title {
@@ -254,11 +254,17 @@
 }
 
 .card__icon {
-  display: inline-block;
   width: 22px;
   height: 19px;
   background-image: url(../images/heart.svg);
+  background-size: cover;
+  background-color: transparent;
   cursor: pointer;
+  border: none;
+}
+
+.card__icon_active {
+  background-image: url(../images/heart-active.svg);
 }
 
 .card__icon:hover {
