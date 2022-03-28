@@ -4,21 +4,11 @@
 }
 
 @font-face {
-  src: url('fonts/inter/Inter-Bold.woff');
-  font-family: 'Inter-Bold';
-}
-
-@font-face {
   src: url('fonts/inter/Inter-Medium.woff');
   font-family: 'Inter-Medium';
 }
 
 @font-face {
-  src: url('fonts/montserrat/Montserrat-Bold.woff');
-  font-family: 'Montserrat-Bold';
-}
-
-@font-face {
-  src: url('fonts/montserrat/Montserrat-Semibold.woff');
-  font-family: 'Montserrat-Semibold';
+  src: url('fonts/inter/Inter-Black.woff');
+  font-family: 'Inter-Black';
 }

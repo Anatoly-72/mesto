@@ -1,0 +1,14 @@
+﻿.popup__btn-text {
+  font-family: 'Inter-Regular';
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  margin: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__btn-text {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
