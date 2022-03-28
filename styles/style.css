@@ -20,6 +20,7 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   height: 100%;
+  background-color: #000;
 }
 
 .page__container {
@@ -27,7 +28,6 @@
   height: 100%;
   margin: 0 auto;
   padding: 45px 200px 60px;
-  background-color: #000;
 }
 
 @media screen and (max-width: 1279px) {
@@ -95,12 +95,16 @@
 }
 
 .profile__info {
-  margin-left: 30px;
+  width: 100%;
+  max-width: 336px;
   font-size: 0;
+  position: relative;
+  margin-left: 30px;
 }
 
 @media screen and (max-width: 767px) {
   .profile__info {
+    max-width: 245px;
     margin: 28.25px auto 0;
     text-align: center;
   }
@@ -113,13 +117,17 @@
   color: #fff;
   display: inline-block;
   margin: 0;
+  max-width: 294px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 767px) {
   .profile__title {
     font-size: 27px;
     line-height: 32.68px;
-    margin: 0 0 0 28px;
+    margin: 0 auto;
   }
 }
 
@@ -129,15 +137,17 @@
   height: 24px;
   border: 1px solid #fff;
   box-sizing: border-box;
-  margin-left: 18px;
   padding: 0;
   background-color: transparent;
   background-image: url(../images/edit-button.svg);
-  background-size: cover;
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center;
   cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  transition: all .3s ease;
 }
 
 .profile__edit-button:hover {
@@ -148,7 +158,8 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
-    margin-left: 10px;
+    background-image: url(../images/edit-button-small.svg);
+    top: 8px;
   }
 }
 
@@ -158,6 +169,10 @@
   line-height: 22px;
   color: #fff;
   margin: 10px 0 0;
+  max-width: 294px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 767px) {
@@ -183,6 +198,7 @@
   background-position: center;
   cursor: pointer;
   margin-left: auto;
+  transition: all .3s ease;
 }
 
 .profile__add-button:hover {
@@ -193,6 +209,7 @@
   .profile__add-button {
     margin: 32px auto 0;
     max-width: 282px;
+    background-image: url(../images/plus-small.svg);
   }
 }
 
@@ -297,6 +314,155 @@
   .footer__text {
     font-size: 14px;
     line-height: 17px;
+  }
+}
+
+.popup {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .5);
+  transition: all .3s ease;
+  visibility: hidden;
+  opacity: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .popup {
+    padding: 19px;
+  }
+}
+
+.popup_active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 430px;
+  background-color: #fff;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 36px;
+  border-radius: 10px;
+  position: relative;
+  margin: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__container {
+    width: 100%;
+    max-width: 282px;
+    max-height: 322px;
+    padding: 25px 22px;
+  }
+}
+
+.popup__title {
+  font-family: 'Inter-Black';
+  font-size: 24px;
+  line-height: 29px;
+  margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.popup__list {
+  margin: 54px 0 48px;
+  padding: 0;
+  list-style: none;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__list {
+    margin: 75px 0 48px;
+  }
+}
+
+.popup__item:last-child {
+  margin-top: 30px;
+}
+
+.popup__text {
+  width: 100%;
+  min-height: 27px;
+  box-sizing: border-box;
+  outline: none;
+  font-family: 'Inter-Regular';
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+}
+
+.popup__btn {
+  display: flex;
+  min-height: 50px;
+  background-color: #000;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.popup__btn:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__btn {
+    min-height: 46px;
+  }
+}
+
+.popup__btn-text {
+  font-family: 'Inter-Regular';
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+  margin: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__btn-text {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.popup__close {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: -35px;
+  right: -35px;
+  margin: 0;
+  padding: 0;
+  background-image: url(../images/close-icon-big.svg);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__close {
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/close-icon-small.svg);
+    top: -35px;
+    right: 0;
   }
 }
 
