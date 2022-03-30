@@ -13,7 +13,7 @@
   background-position: center;
   cursor: pointer;
   margin-left: auto;
-  transition: all .3s ease;
+  transition: .3s ease;
 }
 
 .profile__add-button:hover {

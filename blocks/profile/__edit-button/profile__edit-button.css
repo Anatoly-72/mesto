@@ -11,10 +11,8 @@
   background-size: auto;
   background-position: center;
   cursor: pointer;
-  position: absolute;
-  top: 15px;
-  right: 0;
-  transition: all .3s ease;
+  transition: .3s ease;
+  margin: 15px 0 0 18px;
 }
 
 .profile__edit-button:hover {
@@ -26,6 +24,6 @@
     width: 18px;
     height: 18px;
     background-image: url(../../../images/edit-button-small.svg);
-    top: 8px;
+    margin: 8px 0 0 10px;
   }
 }
