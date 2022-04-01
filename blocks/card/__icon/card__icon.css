@@ -6,6 +6,8 @@
   background-color: transparent;
   cursor: pointer;
   border: none;
+  opacity: 1;
+  transition: .3s ease;
 }
 
 .card__icon:hover {
