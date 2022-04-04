@@ -89,17 +89,17 @@
     </footer>
   </div>
   <div class="popup">
-    <form class="popup__container" name="profileEditingForm">
+    <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
-      <ul class="popup__list">
-        <li class="popup__item"><input class="popup__text" type="text" name="last-name"></li>
-        <li class="popup__item"><input class="popup__text" type="text" name="info"></li>
-      </ul>
-      <button class="popup__btn" type="submit" aria-label="Сохранить">
-        <span class="popup__btn-text">Сохранить</span>
-      </button>
+      <form class="popup__form" name="profileEditingForm">
+        <input class="popup__form-input" type="text" name="last-name">
+        <input class="popup__form-input" type="text" name="info">
+        <button class="popup__form-btn" type="submit" aria-label="Сохранить">
+          <span class="popup__form-btn-text">Сохранить</span>
+        </button>
+      </form>
       <button class="popup__close" type="button"></button>
-    </form>
+    </div>
   </div>
   <script src="scripts/index.js"></script>
 </body>
