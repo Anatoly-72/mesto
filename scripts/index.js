@@ -31,3 +31,50 @@ function formSubmitHandler(evt) {
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
+  },
+];
+
+const listContainer = document.querySelector('.cards__list');
+const template = document.querySelector('.template');
+
+function render() {
+  const html = initialCards.map(getElement);
+  listContainer.append(...html);
+}
+
+function getElement(item) {
+  const getElementTemplate = template.content.cloneNode(true);
+  const name = getElementTemplate.querySelector('.card__title');
+  const link = getElementTemplate.querySelector('.card__img');
+  name.textContent = item.name;
+  link.src = item.link;
+
+  return getElementTemplate;
+}
+
+render();
