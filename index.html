@@ -37,8 +37,20 @@
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__form" name="profileEditingForm">
-        <input class="popup__form-input" type="text" name="last-name">
-        <input class="popup__form-input" type="text" name="info">
+        <input
+          class="popup__form-input"
+          type="text"
+          name="last-name"
+          required
+          minlength="2"
+          maxlength="40">
+        <input
+          class="popup__form-input"
+          type="text"
+          name="info"
+          required
+          minlength="2"
+          maxlength="200">
         <button class="popup__form-btn" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
       <button class="popup__close" type="button"></button>
@@ -48,8 +60,20 @@
     <div class="popup__container">
       <h3 class="popup__title">Новое место</h3>
       <form class="popup__form popup__form_new-card" name="addCardForm">
-        <input class="popup__form-input" type="text" name="title" placeholder="Название">
-        <input class="popup__form-input" type="text" name="link" placeholder="Ссылка на картинку">
+        <input
+          class="popup__form-input"
+          type="text"
+          name="title"
+          placeholder="Название"
+          required
+          minlength="2"
+          maxlength="30">
+        <input
+          class="popup__form-input"
+          type="url"
+          name="link"
+          placeholder="Ссылка на картинку"
+          required>
         <button class="popup__form-btn popup__form-btn_type_new-card" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
       <button class="popup__close" type="button"></button>
@@ -75,6 +99,7 @@
     </li>
   </template>
   <script src="scripts/index.js"></script>
+  <script src="scripts/validate.js"></script>
 </body>
 
 </html>

@@ -21,3 +21,7 @@
   line-height: 17px;
   color: #C4C4C4;
 }
+
+.popup__form-input:invalid {
+  border-bottom: 1px solid #FF0000;
+}
