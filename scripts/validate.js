@@ -1,3 +1,8 @@
+const enableValidation = ({formSelector, ...rest}) => {
+
+  });
+}
+
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
