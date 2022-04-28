@@ -2,5 +2,10 @@
   border: 1px solid #000;
   background-color: transparent;
   color: #000;
-  opacity: 0.2;
+  opacity: .2;
+  cursor: default;
+}
+
+.popup__form-btn_disabled:hover {
+  opacity: .2;
 }
