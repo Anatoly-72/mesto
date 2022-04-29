@@ -48,10 +48,13 @@ const jobInput = formProfilePopup.querySelector('[name="info"]');
 const imageBig = imagePopup.querySelector('.popup__image');
 const imageCaption = imagePopup.querySelector('.popup__figcaption');
 
+const inputValueTitle = formCardPopup.querySelector('[name="title"]').value;
+const inputValueLink = formCardPopup.querySelector('[name="link"]').value;
+
 function handleEscUp(evt) {
   evt.preventDefault();
-  const activePopup = document.querySelector('.popup_active');
-  if (evt.keyCode === 27) {
+  if (evt.key === 'Escape') {
+    const activePopup = document.querySelector('.popup_active');
     closePopup(activePopup);
   }
 };
@@ -111,13 +114,11 @@ function formSubmitHandler(evt) {
 }
 
 function handleCardAddFormSubmit(evt) {
-  const inputValueTitle = formCardPopup.querySelector('[name="title"]').value;
-  const inputValueLink = formCardPopup.querySelector('[name="link"]').value;
   const element = getElement({ name: inputValueTitle, link: inputValueLink });
   evt.preventDefault();
   listContainer.prepend(element);
   closePopup(cardPopup);
-  addCardForm.reset();
+  formCardPopup.reset();
 }
 
 popups.forEach((popup) => {
