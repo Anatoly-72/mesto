@@ -48,8 +48,8 @@ const jobInput = formProfilePopup.querySelector('[name="info"]');
 const imageBig = imagePopup.querySelector('.popup__image');
 const imageCaption = imagePopup.querySelector('.popup__figcaption');
 
-const inputValueTitle = formCardPopup.querySelector('[name="title"]').value;
-const inputValueLink = formCardPopup.querySelector('[name="link"]').value;
+const inputValueTitle = formCardPopup.querySelector('[name="title"]');
+const inputValueLink = formCardPopup.querySelector('[name="link"]');
 
 function handleEscUp(evt) {
   evt.preventDefault();
@@ -114,7 +114,7 @@ function formSubmitHandler(evt) {
 }
 
 function handleCardAddFormSubmit(evt) {
-  const element = getElement({ name: inputValueTitle, link: inputValueLink });
+  const element = getElement({ name: inputValueTitle.value, link: inputValueLink.value });
   evt.preventDefault();
   listContainer.prepend(element);
   closePopup(cardPopup);
