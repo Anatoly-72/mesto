@@ -34,7 +34,7 @@ const setEventListeners = (formElement, config) => {
   });
 };
 
-const disabledButton = (formElement, config) => {
+const disabledButtonState = (formElement, config) => {
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
   buttonElement.classList.add(config.inactiveButtonClass);
   buttonElement.setAttribute('disabled', 'disabled');
@@ -45,7 +45,7 @@ const enableValidation = (config) => {
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      disabledButton(formElement, config);
+      disabledButtonState(formElement, config);
     });
     setEventListeners(formElement, config);
   });
