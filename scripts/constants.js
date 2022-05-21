@@ -4,7 +4,6 @@ export const cardPopup = document.querySelector('.popup_type_new-card');
 export const imagePopup = document.querySelector('.popup_type_image');
 
 export const listContainer = document.querySelector('.cards__list');
-export const template = document.querySelector('.template');
 
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
