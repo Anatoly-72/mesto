@@ -1,8 +1,4 @@
-import {
-  imagePopup,
-  imageBig,
-  imageCaption,
-} from './constants.js';
+import { imagePopup, imageBig, imageCaption } from './constants.js';
 
 export class Card {
   constructor(title, image, cardSelector, openPopup) {
@@ -38,8 +34,6 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._likeBtn = this._element.querySelector('.card__icon');
-
     this._imageSmall.addEventListener('click', () => {
       this._handleOpenPopup();
     });
@@ -58,6 +52,7 @@ export class Card {
   generateCard() {
     this._element = this._getTemplate();
     this._element.querySelector('.card__title').textContent = this._title;
+    this._likeBtn = this._element.querySelector('.card__icon');
     this._imageSmall = this._element.querySelector('.card__img');
     this._imageSmall.src = this._image;
     this._imageSmall.alt = this._title;

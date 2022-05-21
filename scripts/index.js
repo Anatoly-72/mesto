@@ -94,7 +94,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_active');
 }
 
-function formSubmitHandler(evt) {
+function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
@@ -106,6 +106,7 @@ function handleCardAddFormSubmit(evt) {
   addCard(inputValueTitle.value, inputValueLink.value);
   closePopup(cardPopup);
   formCardPopup.reset();
+  formAddNewCardValidator.resetValidation();
 }
 
 popups.forEach((popup) => {
@@ -125,7 +126,7 @@ editButton.addEventListener('click', () => {
   openPopup(profilePopup);
 });
 
-formProfilePopup.addEventListener('submit', formSubmitHandler);
+formProfilePopup.addEventListener('submit', handleProfileFormSubmit);
 
 addButton.addEventListener('click', () => {
   openPopup(cardPopup);
