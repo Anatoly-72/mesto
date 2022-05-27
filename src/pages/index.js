@@ -1,10 +1,12 @@
+import Section from '../components/Section.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import {
+  initialCards,
   popups,
   profilePopup,
   cardPopup,
-  listContainer,
+  cardListSelector,
   editButton,
   addButton,
   profileTitle,
@@ -15,43 +17,8 @@ import {
   jobInput,
   inputValueTitle,
   inputValueLink,
+  config,
 } from '../utils/constants.js';
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg',
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg',
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg',
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg',
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg',
-  },
-];
-
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-input',
-  submitButtonSelector: '.popup__form-btn',
-  inactiveButtonClass: 'popup__form-btn_disabled',
-  inputErrorClass: 'popup__form-input_type_error',
-  errorClass: 'popup__error_visible',
-};
 
 const formEditProfileValidator = new FormValidator(config, formProfilePopup);
 formEditProfileValidator.enableValidation();
@@ -59,11 +26,28 @@ formEditProfileValidator.enableValidation();
 const formAddNewCardValidator = new FormValidator(config, formCardPopup);
 formAddNewCardValidator.enableValidation();
 
-function renderInitialCards(arr) {
-  arr.forEach((item) => {
-    addCard(item.name, item.link);
-  });
-}
+const cardsList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      cardsList.addItem(createCard(item.name, item.link));
+    },
+  },
+  cardListSelector
+);
+
+// function handleCardClick(name, link) {
+//   imageBig.src = link;
+//   imageBig.alt = name;
+//   imageCaption.textContent = name;
+//   openPopup(imagePopup);
+// }
+
+// function renderInitialCards(arr) {
+//   arr.forEach((item) => {
+//     addCard(item.name, item.link);
+//   });
+// }
 
 function createCard(title, image) {
   const card = new Card(title, image, '.template', openPopup);
@@ -71,10 +55,10 @@ function createCard(title, image) {
   return cardElement;
 }
 
-function addCard(title, image) {
-  const card = createCard(title, image);
-  listContainer.prepend(card);
-}
+// function addCard(title, image) {
+//   const card = createCard(title, image);
+//   listContainer.prepend(card);
+// }
 
 function handleEscUp(evt) {
   evt.preventDefault();
@@ -134,4 +118,6 @@ addButton.addEventListener('click', () => {
 
 formCardPopup.addEventListener('submit', handleCardAddFormSubmit);
 
-renderInitialCards(initialCards);
+cardsList.renderItems();
+
+// renderInitialCards(initialCards);
