@@ -1,4 +1,4 @@
-import { imagePopup, imageBig, imageCaption } from './constants.js';
+import { imagePopup, imageBig, imageCaption } from '../utils/constants.js';
 
 export class Card {
   constructor(title, image, cardSelector, openPopup) {
