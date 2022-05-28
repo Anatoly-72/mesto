@@ -30,7 +30,9 @@ const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      cardsList.addItem(createCard(item.name, item.link));
+      const card = new Card(item.name, item.link, '.template', openPopup);
+      const cardElement = card.generateCard();
+      cardsList.addItem(cardElement);
     },
   },
   cardListSelector
@@ -49,11 +51,11 @@ const cardsList = new Section(
 //   });
 // }
 
-function createCard(title, image) {
-  const card = new Card(title, image, '.template', openPopup);
-  const cardElement = card.generateCard();
-  return cardElement;
-}
+// function createCard(title, image) {
+//   const card = new Card(title, image, '.template', openPopup);
+//   const cardElement = card.generateCard();
+//   return cardElement;
+// }
 
 // function addCard(title, image) {
 //   const card = createCard(title, image);
@@ -87,7 +89,7 @@ function handleProfileFormSubmit(evt) {
 
 function handleCardAddFormSubmit(evt) {
   evt.preventDefault();
-  addCard(inputValueTitle.value, inputValueLink.value);
+  addItem(inputValueTitle.value, inputValueLink.value);
   closePopup(cardPopup);
   formCardPopup.reset();
   formAddNewCardValidator.resetValidation();
