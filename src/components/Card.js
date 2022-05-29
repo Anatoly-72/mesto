@@ -1,11 +1,11 @@
-import { imagePopup, imageBig, imageCaption } from '../utils/constants.js';
+// import { imagePopup, imageBig, imageCaption } from '../utils/constants.js';
 
 export class Card {
-  constructor(title, image, cardSelector, openPopup) {
+  constructor(title, image, cardSelector, handleCardClick) {
     this._title = title;
     this._image = image;
     this._cardSelector = cardSelector;
-    this._openPopup = openPopup;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -26,17 +26,16 @@ export class Card {
     this._element = null;
   }
 
-  _handleOpenPopup() {
-    imageBig.src = this._image;
-    imageBig.alt = this._title;
-    imageCaption.textContent = this._title;
-    this._openPopup(imagePopup);
-  }
-
   _setEventListeners() {
     this._imageSmall.addEventListener('click', () => {
-      this._handleOpenPopup();
+      this._handleCardClick(this._name, this._link);
     });
+
+    // this._element
+    //   .querySelector('.card__img')
+    //   .addEventListener('click', () =>
+    //     this._handleCardClick(this._name, this._link)
+    //   );
 
     this._element
       .querySelector('.card__trash')
@@ -54,9 +53,11 @@ export class Card {
     this._element.querySelector('.card__title').textContent = this._title;
     this._likeBtn = this._element.querySelector('.card__icon');
     this._imageSmall = this._element.querySelector('.card__img');
+    // const imageSmall = this._element.querySelector('.card__img');
+    this._setEventListeners();
     this._imageSmall.src = this._image;
     this._imageSmall.alt = this._title;
-    this._setEventListeners();
+    // this._setEventListeners();
 
     return this._element;
   }
