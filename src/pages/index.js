@@ -20,11 +20,7 @@ import {
   config,
 } from '../utils/constants.js';
 
-const formEditProfileValidator = new FormValidator(config, formProfilePopup);
-formEditProfileValidator.enableValidation();
 
-const formAddNewCardValidator = new FormValidator(config, formCardPopup);
-formAddNewCardValidator.enableValidation();
 
 const cardsList = new Section(
   {
@@ -37,6 +33,8 @@ const cardsList = new Section(
   },
   cardListSelector
 );
+
+cardsList.renderItems();
 
 // function handleCardClick(name, link) {
 //   imageBig.src = link;
@@ -51,15 +49,14 @@ const cardsList = new Section(
 //   });
 // }
 
-// function createCard(title, image) {
-//   const card = new Card(title, image, '.template', openPopup);
-//   const cardElement = card.generateCard();
-//   return cardElement;
-// }
+function createCard(title, image) {
+  const card = new Card(title, image, '.template', openPopup);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
 // function addCard(title, image) {
 //   const card = createCard(title, image);
-//   listContainer.prepend(card);
 // }
 
 function handleEscUp(evt) {
@@ -120,6 +117,10 @@ addButton.addEventListener('click', () => {
 
 formCardPopup.addEventListener('submit', handleCardAddFormSubmit);
 
-cardsList.renderItems();
+const formEditProfileValidator = new FormValidator(config, formProfilePopup);
+formEditProfileValidator.enableValidation();
+
+const formAddNewCardValidator = new FormValidator(config, formCardPopup);
+formAddNewCardValidator.enableValidation();
 
 // renderInitialCards(initialCards);
