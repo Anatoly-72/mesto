@@ -113,6 +113,21 @@ function addInfoFormProfile(userNameElement, userInfoElement) {
   jobInput.value = userInfoElement;
 }
 
+const popupTypeAdd = new PopupWIthForm({
+  popupSelector: '.popup_type_new-card',
+  handleFormSubmit: (item) => {
+    cardsList.addItem(createCard(item));
+  },
+});
+
+popupTypeAdd.setEventListeners();
+
+addButton.addEventListener('click', () => {
+popupTypeAdd.open();
+});
+
+
+
 // const profilePopup = new PopupWIthForm({
 //   popupSelector: '.popup_type_edit',
 //   handleFormSubmit: (data) => {
