@@ -35,20 +35,14 @@ export const listContainer = document.querySelector('.cards__list');
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
 
-export const profileTitle = document.querySelector('.profile__title');
-export const profileSubtitle = document.querySelector('.profile__subtitle');
-
 export const formProfilePopup = profilePopup.querySelector('.popup__form');
 export const formCardPopup = cardPopup.querySelector('.popup__form_new-card');
 
-export const nameInput = formProfilePopup.querySelector('[name="last-name"]');
-export const jobInput = formProfilePopup.querySelector('[name="info"]');
+export const nameInput = formProfilePopup.querySelector('[name="userName"]');
+export const jobInput = formProfilePopup.querySelector('[name="about"]');
 
 export const imageBig = imagePopup.querySelector('.popup__image');
 export const imageCaption = imagePopup.querySelector('.popup__figcaption');
-
-export const inputValueTitle = formCardPopup.querySelector('[name="name"]');
-export const inputValueLink = formCardPopup.querySelector('[name="link"]');
 
 export const config = {
   formSelector: '.popup__form',

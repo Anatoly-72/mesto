@@ -9,14 +9,10 @@ import {
   cardListSelector,
   editButton,
   addButton,
-  profileTitle,
-  profileSubtitle,
   formProfilePopup,
   formCardPopup,
   nameInput,
   jobInput,
-  inputValueTitle,
-  inputValueLink,
   config,
 } from '../utils/constants.js';
 
@@ -39,7 +35,29 @@ const cardsList = new Section(
   cardListSelector
 );
 
-cardsList.renderItems();
+const cardPopup = new PopupWIthForm({
+  popupSelector: '.popup_type_new-card',
+  handleFormSubmit: (item) => {
+    cardsList.addItem(createCard(item));
+    cardPopup.close();
+  },
+});
+
+const userInfo = new UserInfo({
+  userName: '.profile__title',
+  about: '.profile__subtitle',
+});
+
+const profilePopup = new PopupWIthForm({
+  popupSelector: '.popup_type_edit',
+  handleFormSubmit: (data) => {
+    userInfo.setUserInfo({
+      userName: data.userName,
+      about: data.about,
+    });
+    profilePopup.close();
+  },
+});
 
 function createCard(item) {
   const card = new Card(item.name, item.link, '.template', handleCardClick);
@@ -51,34 +69,21 @@ function handleCardClick(name, link) {
   imagePopup.open(name, link);
 }
 
-const user = new UserInfo({
-  userNameElement: profileTitle,
-  userInfoElement: profileSubtitle,
-});
-
-const profilePopup = new PopupWIthForm({
-  popupSelector: '.popup_type_edit',
-  handleFormSubmit: (data) => {
-    user.setUserInfo(data);
-    profilePopup.close();
-  },
-});
+function editProfileData({ userName, about }) {
+  nameInput.value = userName;
+  jobInput.value = about;
+}
 
 profilePopup.setEventListeners();
 
 editButton.addEventListener('click', () => {
-  const userData = user.getUserInfo();
-  nameInput.value = userData.name;
-  jobInput.value = userData.about;
+  const userData = userInfo.getUserInfo();
+  editProfileData({
+    userName: userData.userName,
+    about: userData.about,
+  });
+  formEditProfileValidator.resetValidation();
   profilePopup.open();
-});
-
-const cardPopup = new PopupWIthForm({
-  popupSelector: '.popup_type_new-card',
-  handleFormSubmit: (item) => {
-    cardsList.addItem(createCard(item));
-    cardPopup.close();
-  },
 });
 
 cardPopup.setEventListeners();
@@ -86,6 +91,8 @@ cardPopup.setEventListeners();
 addButton.addEventListener('click', () => {
 cardPopup.open();
 });
+
+cardsList.renderItems();
 
 
 
