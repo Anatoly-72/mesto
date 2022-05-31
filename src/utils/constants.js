@@ -25,7 +25,6 @@ export const initialCards = [
   },
 ];
 
-export const popups = document.querySelectorAll('.popup');
 export const profilePopup = document.querySelector('.popup_type_edit');
 export const cardPopup = document.querySelector('.popup_type_new-card');
 export const imagePopup = document.querySelector('.popup_type_image');
@@ -48,7 +47,7 @@ export const jobInput = formProfilePopup.querySelector('[name="info"]');
 export const imageBig = imagePopup.querySelector('.popup__image');
 export const imageCaption = imagePopup.querySelector('.popup__figcaption');
 
-export const inputValueTitle = formCardPopup.querySelector('[name="title"]');
+export const inputValueTitle = formCardPopup.querySelector('[name="name"]');
 export const inputValueLink = formCardPopup.querySelector('[name="link"]');
 
 export const config = {
