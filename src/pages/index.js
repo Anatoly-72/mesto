@@ -30,15 +30,21 @@ const cardsList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item.name, item.link, '.template', handleCardClick);
-      const cardElement = card.generateCard();
-      cardsList.addItem(cardElement);
+      // const card = new Card(item.name, item.link, '.template', handleCardClick);
+      // const cardElement = card.generateCard();
+      cardsList.addItem(createCard(item));
     },
   },
   cardListSelector
 );
 
 cardsList.renderItems();
+
+function createCard(item) {
+  const card = new Card(item.name, item.link, '.template', handleCardClick);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
 function handleCardClick(name, link) {
   imagePopup.open(name, link);
@@ -75,6 +81,7 @@ const user = new UserInfo({
 const popupTypeEdit = new PopupWIthForm({
   popupSelector: '.popup_type_edit',
   handleFormSubmit: (data) => {
+    console.log(data)
         user.setUserInfo(data);
         popupTypeEdit.close();
       }
