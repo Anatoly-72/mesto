@@ -82,18 +82,13 @@ editButton.addEventListener('click', () => {
     userName: userData.userName,
     about: userData.about,
   });
-  formEditProfileValidator.resetValidation();
   profilePopup.open();
 });
 
 cardPopup.setEventListeners();
 
 addButton.addEventListener('click', () => {
-cardPopup.open();
+  cardPopup.open();
 });
 
 cardsList.renderItems();
-
-
-
-
