@@ -49,6 +49,7 @@ const cardPopup = new PopupWIthForm({
   handleFormSubmit: (item) => {
     cardsList.addItem(createCard(item));
     cardPopup.close();
+    formAddNewCardValidator.resetValidation();
   },
 });
 
@@ -65,6 +66,7 @@ const profilePopup = new PopupWIthForm({
       about: data.about,
     });
     profilePopup.close();
+    formEditProfileValidator.resetValidation();
   },
 });
 
@@ -91,12 +93,14 @@ editButton.addEventListener('click', () => {
     userName: userData.userName,
     about: userData.about,
   });
+  formEditProfileValidator.resetValidation();
   profilePopup.open();
 });
 
 cardPopup.setEventListeners();
 
 addButton.addEventListener('click', () => {
+  formAddNewCardValidator.resetValidation();
   cardPopup.open();
 });
 
