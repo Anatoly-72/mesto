@@ -1,3 +1,7 @@
+import './index.css';
+// import logo from '../images/logo.png';
+// import avatar from '../images/avatar.jpg';
+
 import Section from '../components/Section.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
@@ -15,6 +19,11 @@ import {
   jobInput,
   config,
 } from '../utils/constants.js';
+
+// const images = [
+//   { name: 'logo', link: logo },
+//   { name: 'avatar', link: avatar },
+// ];
 
 const formEditProfileValidator = new FormValidator(config, formProfilePopup);
 formEditProfileValidator.enableValidation();
