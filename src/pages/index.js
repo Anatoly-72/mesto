@@ -42,7 +42,6 @@ const cardPopup = new PopupWIthForm({
   handleFormSubmit: (item) => {
     cardsList.addItem(createCard(item));
     cardPopup.close();
-    formAddNewCardValidator.resetValidation();
   },
 });
 
@@ -59,7 +58,6 @@ const profilePopup = new PopupWIthForm({
       about: data.about,
     });
     profilePopup.close();
-    formEditProfileValidator.resetValidation();
   },
 });
 
