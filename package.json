@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "**Краткая информация**",
   "main": "index.js",
-  
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@babel/preset-env": "^7.18.2",
@@ -23,21 +22,16 @@
     "build": "webpack --mode production",
     "dev": "webpack serve"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Anatoly-72/mesto.git"
   },
-
   "author": "",
   "license": "ISC",
-
   "bugs": {
     "url": "https://github.com/Anatoly-72/mesto/issues"
   },
-
   "homepage": "https://github.com/Anatoly-72/mesto#readme",
-
   "dependencies": {
     "core-js": "^3.22.7"
   }
