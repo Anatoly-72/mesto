@@ -6,6 +6,7 @@ import { FormValidator } from '../components/FormValidator.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWIthForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 import {
   initialCards,
   cardListSelector,
@@ -17,6 +18,16 @@ import {
   jobInput,
   config,
 } from '../utils/constants.js';
+
+fetch('https://mesto.nomoreparties.co/v1/cohort-43/cards', {
+  headers: {
+    authorization: 'a6f0e7d8-069f-4cc1-84f0-7d4967254933',
+  },
+})
+  .then((res) => res.json())
+  .then((result) => {
+    console.log(result);
+  });
 
 const formEditProfileValidator = new FormValidator(config, formProfilePopup);
 formEditProfileValidator.enableValidation();
