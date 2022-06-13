@@ -36,6 +36,7 @@
       <p class="footer__text" lang="en">© 2020 Mesto Russia</p>
     </footer>
   </div>
+
   <div class="popup popup_type_edit">
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
@@ -65,6 +66,7 @@
       <button class="popup__close" type="button"></button>
     </div>
   </div>
+
   <div class="popup popup_type_new-card">
     <div class="popup__container">
       <h3 class="popup__title">Новое место</h3>
@@ -94,6 +96,26 @@
       <button class="popup__close" type="button"></button>
     </div>
   </div>
+
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form class="popup__form popup__form_avatar" name="formAvatar" novalidate>
+        <input
+        id="avatar-input"
+        class="popup__form-input"
+        type="url"
+        name="avatar"
+        placeholder="Ссылка на картинку"
+        required
+        >
+        <span class="popup__error popup__error_place_top popup__error_visible" id="avatar-input-error"></span>
+        <button class="popup__form-btn" type="submit" aria-label="Сохранить">Сохранить</button>
+      </form>
+      <button class="popup__close" type="button"></button>
+    </div>
+  </div>
+
   <div class="popup popup_type_image">
     <figure class="popup__container-image">
       <img class="popup__image" src="#" alt="#">
@@ -101,6 +123,16 @@
       <button class="popup__close" type="button"></button>
     </figure>
   </div>
+
+  <div class="popup popup_type_prevent">
+    <div class="popup__container">
+      <h3 class="popup__title">Вы уверены?</h3>
+      <form class="popup__form popup__form_prevent" action="#" name="formPrevent" novalidate>
+        <button class="popup__form-btn" type="submit" aria-label="Сохранить">Да</button>
+      </form>
+    </div>
+  </div>
+
   <template class="template">
     <li class="cards__item">
       <div class="card">
