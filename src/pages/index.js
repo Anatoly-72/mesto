@@ -9,7 +9,7 @@ import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import {
-  initialCards,
+  // initialCards,
   cardListSelector,
   editButton,
   addButton,
@@ -24,17 +24,15 @@ import {
   url,
 } from '../utils/constants.js';
 
-// fetch('https://mesto.nomoreparties.co/v1/cohort-43/cards', {
-//   headers: {
-//     authorization: 'a6f0e7d8-069f-4cc1-84f0-7d4967254933',
-//   },
-// })
-//   .then((res) => res.json())
-//   .then((result) => {
-//     console.log(result);
-//   });
-
 // let currentUserId = null;
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-43',
+  headers: {
+    authorization: 'a6f0e7d8-069f-4cc1-84f0-7d4967254933',
+    'Content-Type': 'application/json',
+  },
+});
 
 const formEditProfileValidator = new FormValidator(config, formProfilePopup);
 formEditProfileValidator.enableValidation();
@@ -48,33 +46,6 @@ formAvatarValidator.enableValidation();
 const imagePopup = new PopupWithImage('.popup_type_image');
 imagePopup.setEventListeners();
 
-const cardsList = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      cardsList.addItem(createCard(item));
-    },
-  },
-  cardListSelector
-);
-
-// const cardsList = new Section(
-//   {
-//     renderer: (item) => {
-//       newCardMaker(item, currentUserId, cardsList);
-//     },
-//   },
-//   '.cards__list'
-// );
-
-// const api = new Api({
-//   baseUrl: url,
-//   headers: {
-//     authorization: token,
-//     'Content-Type': 'application/json',
-//   },
-// });
-
 const cardPopup = new PopupWIthForm({
   popupSelector: '.popup_type_new-card',
   handleFormSubmit: (item) => {
@@ -82,25 +53,6 @@ const cardPopup = new PopupWIthForm({
     cardPopup.close();
   },
 });
-
-// const cardPopup = new PopupWIthForm({
-//   popupSelector: '.popup_type_new-card',
-//   handleFormSubmit: (item) => {
-//     renderLoading(true);
-//     api
-//       .createCard(item)
-//       .then((data) => {
-//         newCardMaker(data, currentUserId, cardsList);
-//         cardPopup.close();
-//       })
-//       .catch((err) => {
-//         console.log(`${err}`);
-//       })
-//       .finally(() => {
-//         renderLoading(false);
-//       });
-//   },
-// });
 
 const userInfo = new UserInfo({
   userName: '.profile__title',
@@ -182,4 +134,42 @@ addButton.addEventListener('click', () => {
   cardPopup.open();
 });
 
-cardsList.renderItems();
+ api.getInitialCards()
+   .then((item) => {
+    const cardsList = new Section(
+      {
+        renderer: (item) => {
+          cardsList.addItem(createCard(item));
+        },
+      },
+      cardListSelector
+    );
+    cardsList.renderItems(item);
+   })
+   .catch((err) => {
+     console.log(err);
+   });
+
+   api
+     .setAvatar()
+     .then((res) => {
+       console.log(res);
+     })
+     .catch((err) => {
+       console.log(err);
+     });
+
+
+
+
+// Promise.all([api.getInitialCards()])
+//   .then(([cards]) => {
+//     // user.setUserInfo(userData);
+//     // avatarImg.style.backgroundImage = `url(${userData.avatar})`;
+//     // currentUserId = userData._id;
+
+//     cardsList.renderItems(cards);
+//   })
+//   .catch((err) => {
+//     console.log(`${err}`);
+//   });
