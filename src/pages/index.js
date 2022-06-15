@@ -9,16 +9,16 @@ import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import {
-  // initialCards,
   cardListSelector,
   editButton,
   addButton,
-  avatarImg,
+  avatarImage,
   formProfilePopup,
   formCardPopup,
   formAvatarPopup,
   nameInput,
   jobInput,
+  avatarInput,
   config,
   token,
   url,
@@ -72,14 +72,22 @@ const profilePopup = new PopupWIthForm({
 
 const avatarPopup = new PopupWIthForm({
   popupSelector: '.popup_type_avatar',
-  handleFormSubmit: () => {
-    avatarPopup.close();
-  },
+  handleFormSubmit: (item) => {
+    api
+      .setAvatar(item)
+      .then((data) => {
+        avatarImage.style.backgroundImage = `url(${data.avatar})`;
+        avatarPopup.close();
+      })
+      .catch((err) => {
+        console.log(`${err}`);
+      })
+  }
 });
 
 avatarPopup.setEventListeners();
 
-avatarImg.addEventListener('click', () => {
+avatarImage.addEventListener('click', () => {
   formAvatarValidator.resetValidation();
   avatarPopup.open();
 });
@@ -150,18 +158,6 @@ addButton.addEventListener('click', () => {
      console.log(err);
    });
 
-   api
-     .setAvatar()
-     .then((res) => {
-       console.log(res);
-     })
-     .catch((err) => {
-       console.log(err);
-     });
-
-
-
-
 // Promise.all([api.getInitialCards()])
 //   .then(([cards]) => {
 //     // user.setUserInfo(userData);
@@ -173,3 +169,12 @@ addButton.addEventListener('click', () => {
 //   .catch((err) => {
 //     console.log(`${err}`);
 //   });
+
+// api.setAvatar()
+// .then((res) => {
+//   console.log(res);
+// })
+// .catch((err) => {
+//   console.log(err);
+// })
+

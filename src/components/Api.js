@@ -7,18 +7,14 @@ export default class Api {
   getInitialCards() {
     return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,
-    })
-    .then(this._getResponseData);
+    }).then(this._getResponseData);
   }
 
-  setAvatar() {
-    return fetch(`${this.baseUrl}/users/me/`, {
+  setAvatar(avatar) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
       method: 'PATCH',
       headers: this.headers,
-      body: JSON.stringify({
-        name: 'Marie Skłodowska Curie',
-        about: 'Physicist and Chemist',
-      }),
+      body: JSON.stringify(avatar),
     }).then(this._getResponseData);
   }
 
