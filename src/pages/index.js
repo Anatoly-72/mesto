@@ -49,8 +49,16 @@ imagePopup.setEventListeners();
 const cardPopup = new PopupWIthForm({
   popupSelector: '.popup_type_new-card',
   handleFormSubmit: (item) => {
-    cardsList.addItem(createCard(item));
-    cardPopup.close();
+    api
+      .createCard(item)
+      .then((data) => {
+        createNewCard(data);
+        cardPopup.close();
+      })
+      .catch((err) => {
+        console.log(`${err}`);
+      })
+    // cardsList.addItem(createCard(item));
   },
 });
 
@@ -92,7 +100,7 @@ avatarImage.addEventListener('click', () => {
   avatarPopup.open();
 });
 
-function createCard(item) {
+function createNewCard(item) {
   const card = new Card(item.name, item.link, '.template', handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
@@ -142,21 +150,21 @@ addButton.addEventListener('click', () => {
   cardPopup.open();
 });
 
- api.getInitialCards()
-   .then((item) => {
-    const cardsList = new Section(
-      {
-        renderer: (item) => {
-          cardsList.addItem(createCard(item));
-        },
+api.getInitialCards()
+  .then((item) => {
+  const cardsList = new Section(
+    {
+      renderer: (item) => {
+        cardsList.addItem(createNewCard(item));
       },
-      cardListSelector
-    );
-    cardsList.renderItems(item);
-   })
-   .catch((err) => {
-     console.log(err);
-   });
+    },
+    cardListSelector
+  );
+  cardsList.renderItems(item);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // Promise.all([api.getInitialCards()])
 //   .then(([cards]) => {

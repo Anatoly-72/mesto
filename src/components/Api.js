@@ -18,16 +18,16 @@ export default class Api {
     }).then(this._getResponseData);
   }
 
-  // createCard(newCard) {
-  //   return fetch(`${this.baseUrl}cards`, {
-  //     method: 'POST',
-  //     headers: this.headers,
-  //     body: JSON.stringify({
-  //       name: newCard.name,
-  //       link: newCard.link,
-  //     }),
-  //   }).then(this._getResponseData);
-  // }
+  createCard(card) {
+    return fetch(`${this.baseUrl}/cards`, {
+      method: 'POST',
+      headers: this.headers,
+      body: JSON.stringify({
+        name: card.name,
+        link: card.link,
+      }),
+    }).then(this._getResponseData);
+  }
 
   _getResponseData(res) {
     if (res.ok) {
