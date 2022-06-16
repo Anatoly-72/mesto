@@ -18,13 +18,13 @@ export default class Api {
     }).then(this._getResponseData);
   }
 
-  createCard(card) {
+  createCard(item) {
     return fetch(`${this.baseUrl}/cards`, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({
-        name: card.name,
-        link: card.link,
+        name: item.name,
+        link: item.link,
       }),
     }).then(this._getResponseData);
   }

@@ -52,13 +52,12 @@ const cardPopup = new PopupWIthForm({
     api
       .createCard(item)
       .then((data) => {
-        createNewCard(data);
+        cardsList.addItem(createNewCard(data));
         cardPopup.close();
       })
       .catch((err) => {
         console.log(`${err}`);
       })
-    // cardsList.addItem(createCard(item));
   },
 });
 
@@ -93,12 +92,14 @@ const avatarPopup = new PopupWIthForm({
   }
 });
 
-avatarPopup.setEventListeners();
-
-avatarImage.addEventListener('click', () => {
-  formAvatarValidator.resetValidation();
-  avatarPopup.open();
-});
+const cardsList = new Section(
+  {
+    renderer: (item) => {
+      cardsList.addItem(createNewCard(item));
+    },
+  },
+  cardListSelector
+);
 
 function createNewCard(item) {
   const card = new Card(item.name, item.link, '.template', handleCardClick);
@@ -150,39 +151,19 @@ addButton.addEventListener('click', () => {
   cardPopup.open();
 });
 
-api.getInitialCards()
-  .then((item) => {
-  const cardsList = new Section(
-    {
-      renderer: (item) => {
-        cardsList.addItem(createNewCard(item));
-      },
-    },
-    cardListSelector
-  );
-  cardsList.renderItems(item);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+avatarPopup.setEventListeners();
 
-// Promise.all([api.getInitialCards()])
-//   .then(([cards]) => {
-//     // user.setUserInfo(userData);
-//     // avatarImg.style.backgroundImage = `url(${userData.avatar})`;
-//     // currentUserId = userData._id;
+avatarImage.addEventListener('click', () => {
+  formAvatarValidator.resetValidation();
+  avatarPopup.open();
+});
 
-//     cardsList.renderItems(cards);
-//   })
-//   .catch((err) => {
-//     console.log(`${err}`);
-//   });
+  Promise.all([api.getInitialCards()])
+    .then(([initialCards]) => {
+      cardsList.renderItems(initialCards);
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    });
 
-// api.setAvatar()
-// .then((res) => {
-//   console.log(res);
-// })
-// .catch((err) => {
-//   console.log(err);
-// })
 
