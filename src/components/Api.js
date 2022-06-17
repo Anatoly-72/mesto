@@ -4,6 +4,23 @@ export default class Api {
     this.headers = options.headers;
   }
 
+  getUserInfo() {
+    return fetch(`${this.baseUrl}/users/me`, {
+      headers: this.headers,
+    }).then(this._getResponseData);
+  }
+
+  setUserInfo(item) {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this.headers,
+      body: JSON.stringify({
+        name: item.userName,
+        about: item.about,
+      }),
+    }).then(this._getResponseData);
+  }
+
   getInitialCards() {
     return fetch(`${this.baseUrl}/cards`, {
       headers: this.headers,

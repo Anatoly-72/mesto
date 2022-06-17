@@ -101,8 +101,8 @@ const cardsList = new Section(
   cardListSelector
 );
 
-function createNewCard(item) {
-  const card = new Card(item.name, item.link, '.template', handleCardClick);
+function createNewCard(data) {
+  const card = new Card(data, '.template', handleCardClick);
   const cardElement = card.generateCard();
   return cardElement;
 }
