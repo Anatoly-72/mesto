@@ -29,6 +29,13 @@ export default class Api {
     }).then(this._getResponseData);
   }
 
+  likeCard(id) {
+    return fetch(`${this.baseUrl}cards/likes/${id}`, {
+      method: 'PUT',
+      headers: this.headers,
+    }).then(this._getResponseData);
+  }
+
   _getResponseData(res) {
     if (res.ok) {
       return res.json();

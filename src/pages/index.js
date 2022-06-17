@@ -95,7 +95,7 @@ const avatarPopup = new PopupWIthForm({
 const cardsList = new Section(
   {
     renderer: (item) => {
-      cardsList.addItem(createNewCard(item));
+      cardsList.addCard(createNewCard(item));
     },
   },
   cardListSelector
