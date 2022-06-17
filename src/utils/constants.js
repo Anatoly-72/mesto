@@ -14,7 +14,7 @@ export const formProfilePopup = profilePopup.querySelector('.popup__form');
 export const formCardPopup = cardPopup.querySelector('.popup__form_new-card');
 export const formAvatarPopup = avatarPopup.querySelector('.popup__form_avatar');
 
-export const nameInput = formProfilePopup.querySelector('[name="userName"]');
+export const nameInput = formProfilePopup.querySelector('[name="name"]');
 export const jobInput = formProfilePopup.querySelector('[name="about"]');
 export const avatarInput = formProfilePopup.querySelector('[name="avatar"]');
 
