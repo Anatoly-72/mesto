@@ -24,8 +24,6 @@ import {
   url,
 } from '../utils/constants.js';
 
-let currentUserId = null;
-
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-43',
   headers: {
@@ -33,6 +31,19 @@ const api = new Api({
     'Content-Type': 'application/json',
   },
 });
+
+let currentUserId = null;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    userInfo.setUserInfo(userData);
+    avatarImage.style.backgroundImage = `url(${userData.avatar})`;
+    currentUserId = userData._id;
+    cardsList.renderItems(initialCards);
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
+  });
 
 const formEditProfileValidator = new FormValidator(config, formProfilePopup);
 formEditProfileValidator.enableValidation();
@@ -147,13 +158,4 @@ avatarImage.addEventListener('click', () => {
   avatarPopup.open();
 });
 
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([userData, initialCards]) => {
-    userInfo.setUserInfo(userData);
-    avatarImage.style.backgroundImage = `url(${userData.avatar})`;
-    currentUserId = userData._id;
-    cardsList.renderItems(initialCards);
-  })
-  .catch((err) => {
-    console.log(`Ошибка: ${err}`);
-  });
+
