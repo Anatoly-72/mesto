@@ -10,13 +10,13 @@ export default class Api {
     }).then(this._getResponseData);
   }
 
-  setUserInfo(item) {
+  setUserInfo(data) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this.headers,
       body: JSON.stringify({
-        name: item.name,
-        about: item.about,
+        name: data.name,
+        about: data.about,
       }),
     }).then(this._getResponseData);
   }
@@ -35,19 +35,26 @@ export default class Api {
     }).then(this._getResponseData);
   }
 
-  createCard(item) {
+  createCard(data) {
     return fetch(`${this.baseUrl}/cards`, {
       method: 'POST',
       headers: this.headers,
       body: JSON.stringify({
-        name: item.name,
-        link: item.link,
+        name: data.name,
+        link: data.link,
       }),
     }).then(this._getResponseData);
   }
 
-  likeCard(id) {
-    return fetch(`${this.baseUrl}cards/likes/${id}`, {
+  deleteCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this.headers,
+    }).then(this._getResponseData);
+  }
+
+  likeCard(cardId) {
+    return fetch(`${this.baseUrl}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this.headers,
     }).then(this._getResponseData);

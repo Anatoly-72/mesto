@@ -32,13 +32,13 @@ const api = new Api({
   },
 });
 
-let currentUserId = null;
+let userId;
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
     userInfo.setUserInfo(userData);
     avatarImage.style.backgroundImage = `url(${userData.avatar})`;
-    currentUserId = userData._id;
+    userId = userData._id;
     cardsList.renderItems(initialCards);
   })
   .catch((err) => {
@@ -63,7 +63,7 @@ const cardPopup = new PopupWIthForm({
     api
       .createCard(item)
       .then((data) => {
-        cardsList.addItem(createNewCard(data, currentUserId));
+        cardsList.addItem(createNewCard(data));
         cardPopup.close();
       })
       .catch((err) => {
@@ -108,23 +108,44 @@ const avatarPopup = new PopupWIthForm({
   },
 });
 
+const deleteCardPopup = new PopupWithConfirmation({
+  popupSelector: '.popup_type_prevent',
+});
+
 const cardsList = new Section(
   {
     renderer: (item) => {
-      cardsList.addCard(createNewCard(item, currentUserId));
+      cardsList.addCard(createNewCard(item));
     },
   },
   cardListSelector
 );
 
-function createNewCard(data, currentUserId) {
-  const card = new Card(data, '.template', handleCardClick, currentUserId);
+function createNewCard(data) {
+  const card = new Card({
+    data: data,
+    userId: userId,
+    cardSelector: '.template',
+    handleCardClick: (name, link) => {
+      imagePopup.open(name, link);
+    },
+    handleDeleteCard: (cardId) => {
+      deleteCardPopup.open();
+      deleteCardPopup.submitCallback(() => {
+        api
+          .deleteCard(cardId)
+          .then(() => {
+            deleteCardPopup.close();
+            card.deleteCard();
+          })
+          .catch((err) => {
+            console.log(`Ошибка: ${err}`);
+          });
+      });
+    },
+  });
   const cardElement = card.generateCard();
   return cardElement;
-}
-
-function handleCardClick(name, link) {
-  imagePopup.open(name, link);
 }
 
 function editProfileData({ name, about }) {
@@ -158,4 +179,4 @@ avatarImage.addEventListener('click', () => {
   avatarPopup.open();
 });
 
-
+deleteCardPopup.setEventListeners();
