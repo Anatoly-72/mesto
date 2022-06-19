@@ -52,17 +52,17 @@ export class Card {
       this._handleDeleteCard(this._cardId);
     });
 
-    // this._likeBtn.addEventListener('click', () => {
-    //   this._handleLikeCard();
-    // });
-
     this._likeBtn.addEventListener('click', () => {
-      if (this._likeBtn.classList.contains('element__like-btn_active')) {
-        this._handleRemoveLike(this._cardId);
-      } else {
-        this._handleSetLike(this._cardId);
-      }
+      this._handleLikeCard();
     });
+
+    // this._likeBtn.addEventListener('click', () => {
+    //   if (this._likeBtn.classList.contains('card__icon_active')) {
+    //     this._handleRemoveLike(this._cardId);
+    //   } else {
+    //     this._handleSetLike(this._cardId);
+    //   }
+    // });
   }
 
   _hasDeleteCard() {
@@ -80,8 +80,30 @@ export class Card {
     this._hasDeleteCard();
     this._imageCard.src = this._link;
     this._imageCard.alt = this._name;
+    // this._isCardLiked();
     this._setEventListeners();
 
     return this._element;
   }
+
+  //   _isCardLiked() {
+  //     if (
+  //       this._likes.some((user) => {
+  //         return this._userId === user._id;
+  //       })
+  //     ) {
+  //       this._likeBtn.classList.add('card__icon_active');
+  //     }
+  //   }
+
+//   handleLikeCard(data) {
+//     this._likes = data.likes;
+//     this._likesNumber.textContent = this._likes.length;
+//     this._likeBtn.classList.toggle('card__icon_active');
+//   }
 }
+
+
+
+
+
