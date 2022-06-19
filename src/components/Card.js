@@ -18,12 +18,7 @@ export class Card {
     this._cardOwnerId = data.owner._id;
     this._handleSetLike = handleSetLike;
     this._handleRemoveLike = handleRemoveLike;
-    // this._id = data._id;
   }
-
-  // getId() {
-  //   return this._id;
-  // }
 
   _getTemplate() {
     const cardElement = document
@@ -34,13 +29,15 @@ export class Card {
     return cardElement;
   }
 
-  _handleLikeCard() {
-    this._likeBtn.classList.toggle('card__icon_active');
-  }
-
-  _handleDeleteCard() {
+  deleteCard() {
     this._element.remove();
     this._element = null;
+  }
+
+  _hasDeleteCard() {
+    if (this._userId !== this._cardOwnerId) {
+      this._deleteCard.remove();
+    }
   }
 
   _setEventListeners() {
@@ -52,22 +49,35 @@ export class Card {
       this._handleDeleteCard(this._cardId);
     });
 
-    this._likeBtn.addEventListener('click', () => {
-      this._handleLikeCard();
-    });
-
     // this._likeBtn.addEventListener('click', () => {
-    //   if (this._likeBtn.classList.contains('card__icon_active')) {
-    //     this._handleRemoveLike(this._cardId);
-    //   } else {
-    //     this._handleSetLike(this._cardId);
-    //   }
+    //   this._handleLikeCard();
     // });
+
+    // слушатель кнопки лайк
+    this._likeBtn.addEventListener('click', () => {
+      if (this._likeBtn.classList.contains('card__icon_active')) {
+        this._handleRemoveLike(this._cardId);
+      } else {
+        this._handleSetLike(this._cardId);
+      }
+    });
   }
 
-  _hasDeleteCard() {
-    if (this._userId !== this._cardOwnerId) {
-      this._deleteCard.remove();
+  // поставить/удалить лайк, изменение количества лайков
+  handleLikeCard(data) {
+    this._likes = data.likes;
+    this._likeBtn.classList.toggle('card__icon_active');
+    this._likesNumber.textContent = this._likes.length;
+  }
+
+  // Проверка, стоит ли лайк на карточке
+  _isCardLiked() {
+    if (
+      this._likes.some((user) => {
+        return this._userId === user._id;
+      })
+    ) {
+      this._likeBtn.classList.add('card__icon_active');
     }
   }
 
@@ -80,28 +90,15 @@ export class Card {
     this._hasDeleteCard();
     this._imageCard.src = this._link;
     this._imageCard.alt = this._name;
-    // this._isCardLiked();
+    this._isCardLiked();
+    this._likesNumber = this._element.querySelector('.card__like');
     this._setEventListeners();
 
     return this._element;
   }
-
-  //   _isCardLiked() {
-  //     if (
-  //       this._likes.some((user) => {
-  //         return this._userId === user._id;
-  //       })
-  //     ) {
-  //       this._likeBtn.classList.add('card__icon_active');
-  //     }
-  //   }
-
-//   handleLikeCard(data) {
-//     this._likes = data.likes;
-//     this._likesNumber.textContent = this._likes.length;
-//     this._likeBtn.classList.toggle('card__icon_active');
-//   }
 }
+
+
 
 
 
