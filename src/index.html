@@ -16,13 +16,13 @@
     </header>
     <main class="content">
       <section class="profile profile_margin">
-        <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Ававтар">
+        <div class="profile__avatar"></div>
         <div class="profile__info">
           <div class="profile__wrapper">
-            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <h1 class="profile__title"></h1>
             <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
           </div>
-          <p class="profile__subtitle">Исследователь океана</p>
+          <p class="profile__subtitle"></p>
         </div>
         <button class="profile__add-button" type="button" aria-label="Добавить"></button>
       </section>
@@ -34,6 +34,7 @@
       <p class="footer__text" lang="en">© 2020 Mesto Russia</p>
     </footer>
   </div>
+
   <div class="popup popup_type_edit">
     <div class="popup__container">
       <h3 class="popup__title">Редактировать профиль</h3>
@@ -42,7 +43,7 @@
           id="name-input"
           class="popup__form-input"
           type="text"
-          name="userName"
+          name="name"
           required
           minlength="2"
           maxlength="40"
@@ -63,6 +64,7 @@
       <button class="popup__close" type="button"></button>
     </div>
   </div>
+
   <div class="popup popup_type_new-card">
     <div class="popup__container">
       <h3 class="popup__title">Новое место</h3>
@@ -92,6 +94,26 @@
       <button class="popup__close" type="button"></button>
     </div>
   </div>
+
+  <div class="popup popup_type_avatar">
+    <div class="popup__container">
+      <h3 class="popup__title">Обновить аватар</h3>
+      <form class="popup__form popup__form_avatar" name="formAvatar" novalidate>
+        <input
+        id="avatar-input"
+        class="popup__form-input"
+        type="url"
+        name="avatar"
+        placeholder="Ссылка на картинку"
+        required
+        >
+        <span class="popup__error popup__error_place_top popup__error_visible" id="avatar-input-error"></span>
+        <button class="popup__form-btn" type="submit" aria-label="Сохранить">Сохранить</button>
+      </form>
+      <button class="popup__close" type="button"></button>
+    </div>
+  </div>
+
   <div class="popup popup_type_image">
     <figure class="popup__container-image">
       <img class="popup__image" src="#" alt="#">
@@ -99,6 +121,16 @@
       <button class="popup__close" type="button"></button>
     </figure>
   </div>
+
+  <div class="popup popup_type_prevent">
+    <div class="popup__container">
+      <h3 class="popup__title">Вы уверены?</h3>
+      <form class="popup__form popup__form_prevent" action="#" name="formPrevent" novalidate>
+        <button class="popup__form-btn popup__form-btn_prevent" type="submit" aria-label="Да">Да</button>
+      </form>
+    </div>
+  </div>
+
   <template class="template">
     <li class="cards__item">
       <div class="card">
@@ -106,7 +138,10 @@
         <div class="card__trash"></div>
         <div class="card__wrapper">
           <h2 class="card__title"></h2>
-          <button class="card__icon" type="button"></button>
+          <div class="card__icon-like">
+            <button class="card__icon" type="button"></button>
+            <span class="card__like">0</span>
+          </div>
         </div>
       </div>
     </li>
