@@ -9,6 +9,7 @@ export const listContainer = document.querySelector('.cards__list');
 export const editButton = document.querySelector('.profile__edit-button');
 export const addButton = document.querySelector('.profile__add-button');
 export const avatarImage = document.querySelector('.profile__avatar');
+export const buttonSubmitList = document.querySelectorAll('[name="button"]');
 
 export const formProfilePopup = profilePopup.querySelector('.popup__form');
 export const formCardPopup = cardPopup.querySelector('.popup__form_new-card');
@@ -20,9 +21,6 @@ export const avatarInput = formProfilePopup.querySelector('[name="avatar"]');
 
 export const imageBig = imagePopup.querySelector('.popup__image');
 export const imageCaption = imagePopup.querySelector('.popup__figcaption');
-
-export const token = 'a6f0e7d8-069f-4cc1-84f0-7d4967254933';
-export const url = 'https://mesto.nomoreparties.co/v1/cohort-43/';
 
 export const config = {
   formSelector: '.popup__form',
