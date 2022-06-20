@@ -18,10 +18,8 @@ import {
   formAvatarPopup,
   nameInput,
   jobInput,
-  avatarInput,
   config,
-  token,
-  url,
+  buttonSubmitList,
 } from '../utils/constants.js';
 
 const api = new Api({
@@ -60,6 +58,7 @@ imagePopup.setEventListeners();
 const cardPopup = new PopupWIthForm({
   popupSelector: '.popup_type_new-card',
   handleFormSubmit: (item) => {
+    renderLoading(true);
     api
       .createCard(item)
       .then((data) => {
@@ -68,6 +67,9 @@ const cardPopup = new PopupWIthForm({
       })
       .catch((err) => {
         console.log(`${err}`);
+      })
+      .finally(() => {
+        renderLoading(false);
       });
   },
 });
@@ -81,6 +83,7 @@ const userInfo = new UserInfo({
 const profilePopup = new PopupWIthForm({
   popupSelector: '.popup_type_edit',
   handleFormSubmit: (item) => {
+    renderLoading(true);
     api
       .setUserInfo(item)
       .then((data) => {
@@ -89,6 +92,9 @@ const profilePopup = new PopupWIthForm({
       })
       .catch((err) => {
         console.log(`${err}`);
+      })
+      .finally(() => {
+        renderLoading(false);
       });
   },
 });
@@ -96,6 +102,7 @@ const profilePopup = new PopupWIthForm({
 const avatarPopup = new PopupWIthForm({
   popupSelector: '.popup_type_avatar',
   handleFormSubmit: (item) => {
+    renderLoading(true);
     api
       .setAvatar(item)
       .then((data) => {
@@ -104,6 +111,9 @@ const avatarPopup = new PopupWIthForm({
       })
       .catch((err) => {
         console.log(`${err}`);
+      })
+      .finally(() => {
+        renderLoading(false);
       });
   },
 });
@@ -120,6 +130,18 @@ const cardsList = new Section(
   },
   cardListSelector
 );
+
+function renderLoading(isLoading) {
+  if (isLoading) {
+    buttonSubmitList.forEach((submit) => {
+      submit.textContent = 'Сохранение...';
+    });
+  } else {
+    buttonSubmitList.forEach((submit) => {
+      submit.textContent = 'Сохранить';
+    });
+  }
+}
 
 function createNewCard(data) {
   const card = new Card({
