@@ -10,11 +10,11 @@ export default class Section {
     });
   }
 
-  addItem(element) {
+  prependItem(element) {
     this._container.prepend(element);
   }
 
-  addCard(element) {
+  appendItem(element) {
     this._container.append(element);
   }
 }

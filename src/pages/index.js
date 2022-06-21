@@ -8,6 +8,7 @@ import PopupWIthForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
+import {renderLoading} from '../utils/utils.js';
 import {
   cardListSelector,
   editButton,
@@ -19,7 +20,6 @@ import {
   nameInput,
   jobInput,
   config,
-  buttonSubmitList,
 } from '../utils/constants.js';
 
 const api = new Api({
@@ -62,7 +62,7 @@ const cardPopup = new PopupWIthForm({
     api
       .createCard(item)
       .then((data) => {
-        cardsList.addItem(createNewCard(data));
+        cardsList.prependItem(createNewCard(data));
         cardPopup.close();
       })
       .catch((err) => {
@@ -125,23 +125,11 @@ const deleteCardPopup = new PopupWithConfirmation({
 const cardsList = new Section(
   {
     renderer: (item) => {
-      cardsList.addCard(createNewCard(item));
+      cardsList.appendItem(createNewCard(item));
     },
   },
   cardListSelector
 );
-
-function renderLoading(isLoading) {
-  if (isLoading) {
-    buttonSubmitList.forEach((submit) => {
-      submit.textContent = 'Сохранение...';
-    });
-  } else {
-    buttonSubmitList.forEach((submit) => {
-      submit.textContent = 'Сохранить';
-    });
-  }
-}
 
 function createNewCard(data) {
   const card = new Card({

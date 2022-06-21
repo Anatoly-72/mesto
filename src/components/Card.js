@@ -86,6 +86,7 @@ export class Card {
     this._imageCard.alt = this._name;
     this._isCardLiked();
     this._likesNumber = this._element.querySelector('.card__like');
+    this._likesNumber.textContent = this._likes.length;
     this._setEventListeners();
 
     return this._element;
